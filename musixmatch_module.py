@@ -1,9 +1,10 @@
-import requests
+import os
 import json
+import requests
 from bs4 import BeautifulSoup
+from dotenv import load_dotenv
 
-import spotify_module as sp
-
+load_dotenv()
 
 def search_song(base_url, headers, search_term):
 
@@ -75,7 +76,7 @@ def terminal_input():
 
 def genius_api_auth():
 
-	CLIENT_ACCESS_TOKEN = 'EFs0VGcOsul6VBjlHPHiNuuJn5oc5dKvc1l3Hbw-Z88JsuRHqZyxyQUVeAEC9T6X'
+	CLIENT_ACCESS_TOKEN = os.getenv('GENIUS_CLIENT_ACCESS_TOKEN')
 	base_url = "http://api.genius.com"
 	headers = {'Authorization': 'Bearer {}'.format(CLIENT_ACCESS_TOKEN)}
 
@@ -84,16 +85,10 @@ def genius_api_auth():
 
 def get_lyrics(search_term):
 	genius_auth = genius_api_auth()
-	spotify_auth = sp.get_auth('sulavkhadka', 'user-top-read')
 
 	song_results = search_song(genius_auth['base_url'], genius_auth['headers'], search_term)
-	artist_list = sp.get_top_artists(spotify_auth['spotify'], spotify_auth['token'], 'sulavkhadka')
 
 	song_api_path = song_results[0]
-	song_api_path_new = song_comparison(artist_list, song_results)
-	# print("OLD: {} \n NEW: {} \n".format(song_api_path, song_api_path_new))
-	if song_api_path_new:
-		song_api_path = song_api_path_new[0]
 
 	sanitized_lyrics = find_lyrics(genius_auth['base_url'], genius_auth['headers'], song_api_path[2])
 
