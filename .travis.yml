@@ -20,9 +20,8 @@ install:
   - conda info -a
 
   # Replace dep1 dep2 ... with your dependencies
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION dep1 dep2 ...
-  - source activate test-environment
   - conda env create
+  - source activate test-environment
 
 script:
   - python -m unittest test
