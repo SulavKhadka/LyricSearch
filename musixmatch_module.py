@@ -85,7 +85,7 @@ def genius_api_auth():
 
 def get_lyrics(search_term):
 	genius_auth = genius_api_auth()
-
+	print(genius_auth)
 	song_results = search_song(genius_auth['base_url'], genius_auth['headers'], search_term)
 
 	song_api_path = song_results[0]
