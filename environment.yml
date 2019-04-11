@@ -6,3 +6,4 @@ dependencies:
   - bs4
   - requests
   - python-dotenv
+  - coverage
