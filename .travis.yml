@@ -24,4 +24,4 @@ install:
   - source activate music-analysis-env
 
 script:
-  - python -m unittest test
+  - coverage run tests.py
