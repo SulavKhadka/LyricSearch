@@ -22,6 +22,7 @@ install:
   # Replace dep1 dep2 ... with your dependencies
   - conda env create
   - source activate music-analysis-env
+  - pip install --user codecov
 
 script:
   - coverage run test.py
