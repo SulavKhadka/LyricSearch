@@ -21,7 +21,7 @@ install:
 
   # Replace dep1 dep2 ... with your dependencies
   - conda env create
-  - source activate test-environment
+  - source activate music-analysis-env
 
 script:
   - python -m unittest test
